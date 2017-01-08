@@ -101,61 +101,40 @@ namespace Mailer
             }
             return null;
         }
-        public void Start()
-        {
-            Console.WriteLine("działam");
-        }
+        
 
         public void SendAll(List<string> emails, List<string> logi)
         {
             using (MailMessage mail = new MailMessage())
             {
-                mail.From = new MailAddress("xxx");
-
-
-                mail.Subject = "Życzenia";
-                // mail.Body = "";
-                mail.Body = @"
-           <style>
-            
-            p{
-                color: yellow;
-            }
-            h1 {
-                color: blue;
-                
-                }
-        </style>
-
-        <h1><i>Hello</i></h1><br /><p>Najlepsze życzenia z okazji świąt</p>
-        "; ;
+                mail.From = new MailAddress("hhh@gmail.com");
+                mail.Subject = "Hi";
+                mail.Body = "<h1><i>Hello</i></h1><br /><p>Najlepsze życzenia z okazji świąt</p>";
                 mail.IsBodyHtml = true;
                 foreach (string item in emails)
                 {
                     mail.To.Add(item);
                     using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
                     {
-                        //while (true)
-                        //{
-                        smtp.Credentials = new System.Net.NetworkCredential("xxx", "yyy");
+                        smtp.Credentials = new System.Net.NetworkCredential("hhh@gmail.com", "hhh");
                         smtp.EnableSsl = true;
                         smtp.Send(mail);
                         Console.WriteLine("poszło");
                         logi.Add(item);
-                        // }
                     }
                 }
-
-
             }
         }
+        public void Start()
+        {
+            Console.WriteLine("work");
+        }
+
         public void Stop()
         {
-            Console.WriteLine("nie działam");
+            Console.WriteLine("stop work");
         }
     }
-
-  
 
     public class Program
     {
@@ -165,20 +144,22 @@ namespace Mailer
             Mailer list = new Mailer();
             HostFactory.Run(x =>                                 
             {
-                x.Service<Mailer>(s =>                        
-                {
-                    s.ConstructUsing(name => new Mailer());     
-                    s.WhenStarted(tc => list.SendAll(list.emails, list.logs));
-                    list.ReadCSV();
-                    
-                    s.WhenStopped(tc => tc.Stop());               
-                });
-
+                //x.UseNLog();
+                x.Service<Mailer>
+                (s =>                        
+                    {
+                        s.ConstructUsing(name => new Mailer());
+                        list.ReadCSV();
+                        s.BeforeStartingService(tc => list.Start());
+                        s.WhenStarted( tc => list.SendAll(list.emails, list.logs));
+                        s.WhenStopped(tc => tc.Stop());               
+                    });
                 x.RunAsLocalSystem();                            
                 x.SetDescription("Mailer with wishes");        
                 x.SetDisplayName("Mailer");                       
                 x.SetServiceName("Mailer");                       
-            });                                                  
+            });      
+                                                        
         }
     }
 }
