@@ -1,0 +1,13 @@
+E:\programowanie\c#\Mailer\Mailer\bin\Debug\Mailer.exe.config
+E:\programowanie\c#\Mailer\Mailer\bin\Debug\Mailer.exe
+E:\programowanie\c#\Mailer\Mailer\bin\Debug\Mailer.pdb
+E:\programowanie\c#\Mailer\Mailer\obj\Debug\Mailer.exe
+E:\programowanie\c#\Mailer\Mailer\obj\Debug\Mailer.pdb
+E:\programowanie\c#\Mailer\Mailer\bin\Debug\NLog.dll
+E:\programowanie\c#\Mailer\Mailer\bin\Debug\Topshelf.dll
+E:\programowanie\c#\Mailer\Mailer\bin\Debug\Topshelf.NLog.dll
+E:\programowanie\c#\Mailer\Mailer\bin\Debug\NLog.xml
+E:\programowanie\c#\Mailer\Mailer\bin\Debug\Topshelf.xml
+E:\programowanie\c#\Mailer\Mailer\bin\Debug\Topshelf.NLog.xml
+E:\programowanie\c#\Mailer\Mailer\bin\Debug\emails.csv
+E:\programowanie\c#\Mailer\Mailer\obj\Debug\Mailer.csprojResolveAssemblyReference.cache
